@@ -22,6 +22,7 @@ sub _log {
 sub flush {
     my ($self) = @_;
     print STDERR to_json($log_message);
+    $log_message = [];
 }
 
 1;
