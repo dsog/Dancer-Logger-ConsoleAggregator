@@ -17,7 +17,7 @@ my $log_message = [];
 
 sub _log {
     my ($self, $level, $message) = @_;
-    push ($log_message => {$level => $message});
+    push (@$log_message => {$level => $message});
 }
 
 sub flush {
