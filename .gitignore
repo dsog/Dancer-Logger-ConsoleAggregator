@@ -1,0 +1,9 @@
+*~
+*.swp
+blib
+Makefile
+Makefile.old
+MYMETA*
+.build
+Dancer-Logger-ConsoleAggregator-*
+pm_to_blib
