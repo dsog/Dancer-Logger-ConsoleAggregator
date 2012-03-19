@@ -2,7 +2,7 @@ package Dancer::Logger::ConsoleAggregator;
 
 use strict;
 use warnings;
-use Dancer::Factory::Hook;
+use Dancer::Hook;
 use JSON qw(to_json);
 
 use vars '$VERSION';
