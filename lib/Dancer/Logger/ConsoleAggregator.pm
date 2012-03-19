@@ -2,10 +2,11 @@ package Dancer::Logger::ConsoleAggregator;
 
 use strict;
 use warnings;
+use Dancer::Factory::Hook;
+use JSON qw(to_json);
 
 use vars '$VERSION';
 use base 'Dancer::Logger::Abstract';
-use JSON qw(to_json);
 
 use Exporter qw( import );
 our @EXPORT = our @EXPORT_OK = qw(flush);
@@ -20,9 +21,12 @@ sub _log {
 }
 
 sub flush {
-    my ($self) = @_;
     print STDERR to_json($log_message);
     $log_message = [];
+}
+
+sub init {
+    Dancer::Hook->new( 'after', sub { flush } );
 }
 
 1;
