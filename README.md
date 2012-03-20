@@ -27,7 +27,7 @@ And this module will log something like this:
 
     { "field1" : "data", "field2" : "data", "messages" : [ "Raw Data" ] }
 
-All on one line.
+All on one line. This is helpful for indexing logs on specific keys.
 
 # AUTHORS
 
