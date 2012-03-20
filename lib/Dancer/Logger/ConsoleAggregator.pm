@@ -19,7 +19,7 @@ sub _log {
 }
 
 sub flush {
-    print STDERR to_json($log_message);
+    print STDERR to_json($log_message) ."\n";
     $log_message = [];
 }
 
