@@ -1,17 +1,12 @@
-package Dancer::Logger::ConsoleAggregator;
-
 use strict;
 use warnings;
+package Dancer::Logger::ConsoleAggregator;
 use Dancer::Hook;
 use JSON qw(to_json);
 
-use vars '$VERSION';
 use base 'Dancer::Logger::Abstract';
 
-use Exporter qw( import );
-our @EXPORT = our @EXPORT_OK = qw(flush);
-
-$VERSION = '0.1';
+# ABSTRACT: Dancer Console Logger that aggregates each requests logs to 1 line.
 
 my $log_message = [];
 
@@ -21,7 +16,7 @@ sub _log {
 }
 
 sub flush {
-    print STDERR to_json($log_message);
+    print STDERR to_json($log_message) ."\n";
     $log_message = [];
 }
 
@@ -29,6 +24,13 @@ sub init {
     Dancer::Hook->new( 'after', sub { flush } );
 }
 
+=head1 SYNOPSIS
+
+This module will aggregate all logging done for each request into one line
+in the output.  It does this by queueing everything up and adding an
+C<after> hook that calls the C<flush> function, which causes the logger
+to output the log line for the current request.
+
+=cut
 1;
-__END__
 
