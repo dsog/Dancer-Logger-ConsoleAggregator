@@ -2,14 +2,11 @@ use strict;
 use warnings;
 package Dancer::Logger::ConsoleAggregator;
 use Dancer::Hook;
-use Exporter qw( import );
 use JSON qw(to_json);
 
 use base 'Dancer::Logger::Abstract';
 
 # ABSTRACT: Dancer Console Logger that aggregates each requests logs to 1 line.
-
-our @EXPORT = our @EXPORT_OK = qw(flush);
 
 my $log_message = [];
 
