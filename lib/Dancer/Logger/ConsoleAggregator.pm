@@ -30,7 +30,7 @@ sub _log {
 }
 
 sub flush {
-    if( @$strings > 0 && scalar( keys %$log_message ) > 0){
+    if( @$strings > 0 || scalar( keys %$log_message ) > 0){
         $log_message->{timestamp} = DateTime->now . 'Z';
         $log_message->{messages} = $strings;
         print STDERR to_json($log_message) ."\n";
