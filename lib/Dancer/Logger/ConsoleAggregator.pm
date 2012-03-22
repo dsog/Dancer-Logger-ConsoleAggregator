@@ -18,14 +18,16 @@ sub _log {
     my ($self, $level, $message, $obj) = @_;
     try {
         # If its a perl object stringified
-        $obj = eval $message;
-    } catch {
+        $ev_res = eval $message;
+        $obj = ref $ev_res ? $ev_res : undef;
+    };
+    try {
         # If its json stringified
         $obj = from_json($message);
-    };
+    } if !$obj;
+
     # If its just a string
     push( @$strings, $message ) if( !$obj );
-
     map { $log_message->{$_} = $obj->{$_} } keys %$obj if $obj;
 }
 
