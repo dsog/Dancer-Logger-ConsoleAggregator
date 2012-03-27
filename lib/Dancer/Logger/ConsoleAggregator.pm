@@ -28,7 +28,18 @@ sub _log {
 
     # If its just a string
     push( @$strings, $message ) if( !$obj );
-    map { $log_message->{$_} = $obj->{$_} } keys %$obj if $obj;
+
+    # If its a hash, handle it, otherwise Dump it into a string
+    if ( defined $obj and ref $obj eq 'HASH' ) {
+        map { $log_message->{$_} = $obj->{$_} } keys %$obj if $obj;
+    } elsif ( defined $obj ){
+        push ( @$strings, Data::Dumper->new([$obj])
+                                        ->Terse(1)
+                                        ->Purity(1)
+                                        ->Indent(0)
+                                        ->Dump()
+        );
+    }
 }
 
 sub flush {
@@ -41,7 +52,10 @@ sub flush {
 }
 
 sub init {
-    Dancer::Hook->new( 'after', sub { flush } );
+    Dancer::Hook->new( 'after', sub {
+        try { flush }
+        catch { print STDERR to_json({ LOG_ERROR => $_ }); };
+    } );
 }
 
 =head1 SYNOPSIS
