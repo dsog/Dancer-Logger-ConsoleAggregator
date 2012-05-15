@@ -1,11 +1,13 @@
 Changelog for Dancer-Logger-ConsoleAggregator
 
-0.005 2012-05-15T06:39:33
+0.005 2012-05-15T06:40:47
  [Naveed Massjouni <naveedm9@gmail.com>]
  - Allow blessed objects to be logged
 
 
  [William Wolf <throughnothing@gmail.com>]
+ - CHANGES file
+
  - Merge pull request #1 from ironcamel/allow-blessed
    
    Allow blessed
