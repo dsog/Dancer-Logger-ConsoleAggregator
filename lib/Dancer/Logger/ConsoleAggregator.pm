@@ -46,7 +46,7 @@ sub flush {
     if( @$strings > 0 || scalar( keys %$log_message ) > 0){
         $log_message->{timestamp} = DateTime->now . 'Z';
         $log_message->{messages} = $strings;
-        print STDERR to_json($log_message) ."\n";
+        print STDERR _to_json($log_message) ."\n";
     }
     ($log_message, $strings) = ({}, []);
 }
@@ -54,9 +54,11 @@ sub flush {
 sub init {
     Dancer::Hook->new( 'after', sub {
         try { flush }
-        catch { print STDERR to_json({ LOG_ERROR => $_ }); };
+        catch { print STDERR _to_json({ LOG_ERROR => $_ }) };
     } );
 }
+
+sub _to_json { to_json(shift, { allow_blessed => 1, convert_blessed => 1 }) }
 
 =head1 SYNOPSIS
 
