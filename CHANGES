@@ -1,11 +1,29 @@
 Changelog for Dancer-Logger-ConsoleAggregator
 
-0.005 2012-05-15T06:40:47
+v0.005 2012-05-15T06:40:51
  [Naveed Massjouni <naveedm9@gmail.com>]
  - Allow blessed objects to be logged
 
 
  [William Wolf <throughnothing@gmail.com>]
+ - v0.005
+   
+    [Naveed Massjouni <naveedm9@gmail.com>]
+    - Allow blessed objects to be logged
+   
+    [William Wolf <throughnothing@gmail.com>]
+    - CHANGES file
+   
+    - Merge pull request #1 from ironcamel/allow-blessed
+   
+      Allow blessed
+   
+    - Add try/catch around flush, update logic.
+   
+      Check to make sure the object is a hash,
+      otherwise we use Data::Dumper to turn it
+      into a string.
+
  - CHANGES file
 
  - Merge pull request #1 from ironcamel/allow-blessed
