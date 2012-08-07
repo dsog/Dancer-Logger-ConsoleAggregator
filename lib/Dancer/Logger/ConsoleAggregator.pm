@@ -52,10 +52,13 @@ sub flush {
 }
 
 sub init {
-    Dancer::Hook->new( 'after', sub {
-        try { flush }
-        catch { print STDERR _to_json({ LOG_ERROR => $_ }) };
-    } );
+    # We need to log on errors also
+    for( qw( after after_error_render ) ) {
+        Dancer::Hook->new( $_, sub {
+            try { flush }
+            catch { print STDERR _to_json({ LOG_ERROR => $_ }) };
+        } );
+    }
 }
 
 sub _to_json { to_json(shift, { allow_blessed => 1, convert_blessed => 1 }) }
