@@ -1,11 +1,25 @@
 Changelog for Dancer-Logger-ConsoleAggregator
 
-v0.005 2012-05-15T06:40:51
+v0.006 2012-08-07T19:28:07
+ [Khaled Hussein <khaled@crowdtilt.com>]
+ - Merge pull request #6 from throughnothing/master
+   
+   Updates galore.
+
+
  [Naveed Massjouni <naveedm9@gmail.com>]
  - Allow blessed objects to be logged
 
 
  [William Wolf <throughnothing@gmail.com>]
+ - Add logging on errors.
+   
+   It seems the 'after' hook wasn't logging on error,
+   so I made it subscribe to the 'after_error_render' hook
+   in addition to the 'after' hook.
+
+ - v0.006
+
  - v0.005
    
     [Naveed Massjouni <naveedm9@gmail.com>]
@@ -25,10 +39,6 @@ v0.005 2012-05-15T06:40:51
       into a string.
 
  - CHANGES file
-
- - Merge pull request #1 from ironcamel/allow-blessed
-   
-   Allow blessed
 
  - Add try/catch around flush, update logic.
    

@@ -4,7 +4,7 @@ Dancer::Logger::ConsoleAggregator - Dancer Console Logger that aggregates each r
 
 # VERSION
 
-version 0.006
+version 0.007
 
 # SYNOPSIS
 
